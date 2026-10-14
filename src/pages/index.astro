@@ -9,8 +9,8 @@ const modelCount = new Set(collections.flatMap((c) => c.models.map((m) => m.id))
 // Cube faces: `home.cube` in catalog/config.yml (see CATALOG.md).
 const faces = cubeModels();
 
-// Featured collections: the six biggest, each shown as a stack of its first three covers.
-const featured = [...collections].sort((a, b) => b.models.length - a.models.length).slice(0, 6);
+// Every collection, in config.yml order, each shown as a stack of its first three covers.
+const featured = collections;
 
 const steps = [
   {
@@ -35,16 +35,6 @@ const steps = [
 >
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero-copy">
-      <img
-        class="hero-logo"
-        src="/josh-3d-lab-logo-320.webp"
-        srcset="/josh-3d-lab-logo-320.webp 320w, /josh-3d-lab-logo-640.webp 640w"
-        sizes="(min-width: 52rem) 11rem, 9rem"
-        width="320"
-        height="320"
-        alt="Josh 3D Lab"
-        fetchpriority="high"
-      />
       <p class="eyebrow">Impresión 3D bajo pedido</p>
       <h1 id="hero-title">Ideas que <span class="accent">puedes tocar.</span></h1>
       <p class="lead">
@@ -90,23 +80,6 @@ const steps = [
     </div>
   </section>
 
-  <section class="steps" aria-labelledby="steps-title">
-    <h2 id="steps-title">Cómo funciona</h2>
-    <ol>
-      {
-        steps.map((s, i) => (
-          <li class="step">
-            <span class="step-number" aria-hidden="true">
-              {i + 1}
-            </span>
-            <h3>{s.title}</h3>
-            <p>{s.text}</p>
-          </li>
-        ))
-      }
-    </ol>
-  </section>
-
   <section class="featured" aria-labelledby="featured-title">
     <div class="section-head">
       <h2 id="featured-title">Colecciones</h2>
@@ -141,6 +114,23 @@ const steps = [
     </ul>
   </section>
 
+  <section class="steps" aria-labelledby="steps-title">
+    <h2 id="steps-title">Cómo funciona</h2>
+    <ol>
+      {
+        steps.map((s, i) => (
+          <li class="step">
+            <span class="step-number" aria-hidden="true">
+              {i + 1}
+            </span>
+            <h3>{s.title}</h3>
+            <p>{s.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
   <section class="cta" aria-labelledby="cta-title">
     <Logo size={40} />
     <h2 id="cta-title">¿Tienes algo en mente?</h2>
@@ -156,34 +146,67 @@ const steps = [
 
 <style>
   /* --- Hero --- */
+  /*
+   * The copy's children and the 3D scene share one grid, so the scene can sit
+   * mid-copy on phones (after the lead) and beside it on wide screens.
+   */
   .hero {
     /* The tilted print bed may poke past the edge on narrow screens. */
     overflow-x: clip;
     overflow-clip-margin: var(--space-5);
     display: grid;
-    align-items: center;
-    gap: var(--space-7);
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      'eyebrow'
+      'title'
+      'lead'
+      'scene'
+      'actions'
+      'stats';
     padding-block: var(--space-7) var(--space-8);
+  }
+
+  .hero-copy {
+    display: contents;
+  }
+
+  .hero .eyebrow {
+    grid-area: eyebrow;
+  }
+  h1 {
+    grid-area: title;
+  }
+  .lead {
+    grid-area: lead;
+  }
+  .scene {
+    grid-area: scene;
+    margin-block: var(--space-5) var(--space-2);
+  }
+  .actions {
+    grid-area: actions;
+  }
+  .stats {
+    grid-area: stats;
   }
 
   @media (min-width: 52rem) {
     .hero {
       grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      grid-template-areas:
+        'eyebrow scene'
+        'title   scene'
+        'lead    scene'
+        'actions scene'
+        'stats   scene';
+      grid-template-rows: auto auto auto auto 1fr;
+      column-gap: var(--space-7);
       padding-block: var(--space-8) var(--space-9);
     }
-  }
 
-  .hero-logo {
-    width: 9rem;
-    height: auto;
-    margin-block-end: var(--space-5);
-    border-radius: 50%;
-    box-shadow: var(--shadow-lg);
-  }
-
-  @media (min-width: 52rem) {
-    .hero-logo {
-      width: 11rem;
+    .scene {
+      align-self: center;
+      margin: 0;
     }
   }
 
@@ -281,13 +304,6 @@ const steps = [
   }
 
   /* --- 3D scene: a photo cube floating over a print bed --- */
-  /* On narrow screens the scene leads, so the 3D piece is above the fold. */
-  @media (max-width: 51.99rem) {
-    .scene {
-      order: -1;
-    }
-  }
-
   .scene {
     --size: clamp(8rem, 20vw, 12rem);
     position: relative;
@@ -487,9 +503,15 @@ const steps = [
     margin-block-start: var(--space-6);
   }
 
-  @media (min-width: 48rem) {
+  @media (min-width: 40rem) {
     .collection-grid {
       grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 60rem) {
+    .collection-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
     }
   }
 
