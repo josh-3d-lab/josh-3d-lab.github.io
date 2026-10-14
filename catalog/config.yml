@@ -1,0 +1,800 @@
+# =============================================================================
+# 3D-print catalog — the ONLY file you edit by hand.
+#
+# After editing, run the sync (locally `npm run catalog:sync`, or GitHub →
+# Actions → "Sync catalog" → Run workflow). The sync writes
+# catalog/data.generated.json and public/catalogo/img/ — never edit those.
+# Full guide: CATALOG.md
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# contact — where "Solicitar este modelo" sends customers.
+# -----------------------------------------------------------------------------
+contact:
+  # WhatsApp number in international format, digits only (52 = Mexico).
+  whatsapp: '523313404076'
+  email: 'contact@josueds.me'
+
+  # Message templates (Spanish). Placeholders:
+  #   {name} → model name (after overrides)
+  #   {link} → deep link to that model, e.g. https://josh-3d-lab.github.io/catalogo/#m-123456
+  whatsapp_message: '¡Hola! Me interesa el modelo {name} ({link}). ¿Me podrías dar más información?'
+  # Used by the home page's "Escríbeme por WhatsApp" button (no placeholders).
+  whatsapp_general_message: '¡Hola! Vi el catálogo de Josh 3D Lab y me gustaría pedir una pieza impresa en 3D.'
+  email_subject: 'Solicitud de modelo: {name}'
+  email_body: |-
+    ¡Hola!
+
+    Me interesa el modelo {name} ({link}).
+    ¿Me podrías dar más información sobre tamaño, colores y tiempo de entrega?
+
+    Gracias.
+
+# -----------------------------------------------------------------------------
+# collections — one section per entry, in this order on the page.
+#
+#   url          MakerWorld collection URL. For your reference only (MakerWorld
+#                blocks scripted reads of collections, see CATALOG.md).
+#   name         Section title shown on the page (Spanish). Required.
+#   description  Optional short text under the title (Spanish).
+#   models       Models in display order. Each item is a MakerWorld model URL
+#                (https://makerworld.com/en/models/123456-whatever) or just its
+#                numeric ID (123456). A trailing "# comment" is ignored — handy
+#                for remembering what each ID is.
+#
+# Example entry to copy:
+#
+#   - url: https://makerworld.com/en/collections/12345678-my-collection
+#     name: Mi colección
+#     description: Texto opcional.
+#     models:
+#       - https://makerworld.com/en/models/1234567-some-model
+#       - 7654321 # Another model
+# -----------------------------------------------------------------------------
+collections:
+  - url: https://makerworld.com/en/collections/37213459-business
+    name: Negocios
+    description: Exhibidores NFC y QR, letreros y piezas personalizables para tu negocio.
+    models:
+      - 3134067 # NFC / QR Smart Desk Command Center - Customizable
+      - 1902601 # Luna – NFC Display Stand
+      - 880031 # Llavero NFC logo de instagram
+      - 1459198 # Google Logo Review NFC Stand | Simple Desk Stand
+      - 525776 # STAND QRCODE/NFC CARD GOOGLE REVIEWS EDITABLE
+      - 2876996 # Customizable QR code with stand
+      - 2746484 # Generative 3D Floor Plans
+      - 861191 # Coffee type chart
+      - 1231584 # Smooth Textured SnapFrames
+      - 3098354 # Custom Sign Generator / Schilder Generator
+      - 949011 # Letter Board and sign board Maker
+      - 476280 # Customizable Parametric QR Code Generator
+
+  - url: https://makerworld.com/en/collections/37709993-dinosaurs
+    name: Dinosaurios
+    description: Esqueletos, figuras articuladas y réplicas prehistóricas.
+    models:
+      - 1510407 # Godzillix – The Ultimate Flexi Godzilla !!
+      - 1407288 # Flexi Dino Skeleton in Urban Vibes Kleidung Rex
+      - 2438949 # Flexi Dino T-Rex - Articulated
+      - 1604846 # Kawaii Triceratops Keychain Cute Dinosaur key
+      - 1848591 # Lava T-Rex – Articulated Dinosaur flexi
+      - 2568852 # Mini Articulated Carnotaurus Dinosaur
+      - 2805284 # Realistic Articulated Mosasaur Flexi
+      - 1600732 # articulated flexi dinosaur
+      - 2789124 # Flexi Velociraptor Dinosaur
+      - 1832456 # Flexi Skeleton Triceratops Dinosaur
+      - 2117027 # The King of Tyrants: AMNH 5027 Skull Replica
+      - 1642797 # Mecha Raptor
+      - 2568050 # Juste un gros T-REX – Inutile mais nécessaire
+      - 1159890 # Chibi Ankylo
+      - 2017588 # Triceratops Dinosaur Kit Card - DinoCards-CC BY-SA
+      - 224274 # Velociraptor Kit Card
+      - 2452591 # Skeletal Articulated Velociraptor
+      - 2400509 # Cute Brontosaurus Dinosaur Flexi Dino Articulated
+      - 786004 # Jurassic Park, Man Eaten by T-Rex on Toilet Scene
+      - 2933142 # Mini Articulated Ankylosaurs | Keychain Version
+      - 1568356 # 三角龙宝宝
+      - 2509225 # Pteranodon Quetzalcoatlus Dino
+      - 1628961 # T-Rex Dinosaur Skeleton
+      - 1580651 # Tyrannosaurus Rex
+      - 2527009 # Cute Skeleton Pterodactyl
+      - 2623050 # Sleeping T-Rex Monitor Sitter
+      - 2253078 # Spinosaurus
+      - 1590312 # TOY STORY - DINO REX
+      - 1637321 # Saber Tooth Tiger Skull Pet Bed
+      - 1620681 # Mini t-rex dino
+      - 2856448 # Realistic Articulated Spinosaurus Flexi
+      - 2385454 # Pocket Dinos
+      - 2862553 # Great White Shark Skeleton
+      - 1590791 # Dino Balance Game
+      - 2261527 # Cute Dino Squad Stylized Miniatures Prehistoric
+      - 1170849 # Baby Sinclair (Dinosaurs)
+      - 1246821 # T-Rex Head Skull - Wall Art
+      - 1581502 # Mecha T-REX
+      - 3075624 # 萌系黑龙/夜煞桌面摆件与屏幕挂件 （无AMS)
+      - 190521 # Reinforced T. rex Skeleton - fixed
+      - 2191805 # 霸王龙头骨化石
+      - 2376288 # BONITA COLECCION DE DINOS
+      - 1661474 # Brachiosaurio Jurassic
+      - 541722 # Dinosaur T-REX Pencil Holder
+      - 1581941 # Stegosaurus
+      - 2526992 # Cute Skeleton Triceratops
+      - 549610 # Raptor Crocs
+      - 1642357 # Dinosaur /T-rex
+      - 1577707 # Velociraptor 1.1 SCALE
+      - 2844257 # Tech Support T-Rex - Monitor buddy
+      - 2245429 # Dilophosaurus
+      - 2229562 # Articulated Cute T-Rex
+      - 1488359 # T-Rex
+      - 2064749 # Triceratops Skull Replica
+      - 2947012 # Indominus Rex Optimized Tree Supports For Diorama
+      - 1973322 # Complete Dinosaur Collection
+      - 1603860 # Velociraptor
+      - 1634871 # Flexi Skeleton T-Rex Dinosaur
+      - 2647505 # Hyper Detailed Tyrannosaurus Rex
+      - 2646949 # T-Rex Skeleton - Monitor & Desk Pet
+      - 2776952 # Mini T-Rex - 12 Min - No Support - 1g Filemant
+      - 2526841 # Cute Skeleton Diplodocus
+
+  - url: https://makerworld.com/en/collections/37710059-miniatures
+    name: Miniaturas
+    description: Piezas diminutas con mucho detalle.
+    models:
+      - 2783401 # Il T-REX più piccolo del mondo [ugello 0,4]
+      - 2011763 # Articulating Penguin
+      - 2818473 # The smallest squirrel in the world (Nozzle 0.4)
+      - 2776952 # Mini T-Rex - 12 Min - No Support - 1g Filemant
+      - 1271313 # 郁闷的小鸭子 动物微缩模型工艺品摆件
+
+  - url: https://makerworld.com/en/collections/36733568-kit-cards
+    name: Kit cards para armar
+    description: Maquetas que se imprimen en una sola placa y se arman sin pegamento.
+    models:
+      - 2017588 # Triceratops Dinosaur Kit Card - DinoCards-CC BY-SA
+      - 224274 # Velociraptor Kit Card
+      - 1601440 # Triceratops
+      - 202358 # T-Rex 3D Puzzle Kit Card - 29 pieces
+      - 763297 # Rover Kit Card - Perseverance
+      - 2527287 # Pick-Up J79 Single Cab - Kit Card
+      - 2789649 # Panzer IV Tank Ausf.H with side skirts 1/35 Scale
+      - 1533631 # Jagdpanzer E100 Super Heavy Tank Destroyer 1:35
+      - 2167962 # Leopard 2 AV Prototype Main Battle Tank 1/35 Scale
+      - 1866607 # USS Perry-class Guided Missile Frigate 1/350 Scale
+      - 2032446 # SA-6 Air Defence Missile Launcher Vehicle 1/35
+      - 1810728 # Tiger II Heavy Tank 1/35 Scale Tiger 2 King Tiger
+      - 2280071 # Leopard 2 A7 Main Battle Tank Movable Cannon 1/35
+      - 1582797 # t34/85 medium tank T-34-85 1:35 scale Soviet Union
+      - 1678913 # Tiger 1 Kit Card
+      - 1640522 # M1A1 Abrams 1:35 Scale USA
+      - 1607303 # M4A3E8 Sherman FURY Medium Tank USA 1:35 Scale
+      - 1512740 # Tiger I Heavy Tank 1:35 Easy to Print and Assemble
+      - 679345 # T-34-85 Tank Kit Card - High Detail 1:64 Scale
+      - 1928908 # Abrams X US 4th-Gen Main Battle Tank 1/35 Scale
+      - 1209795 # Army Truck Kit Card
+      - 223303 # Jeep Kit Card
+      - 2768385 # F-22 Raptor Plane Kit Card
+      - 1493317 # P-51D Desk Fan
+      - 1653693 # B-29 Plane Kit Card
+      - 1439243 # V-22 Tiltrotor Kit Card
+      - 1180634 # AH-64 Helicopter Kit
+      - 967133 # F16 Plane Kit Card
+      - 242106 # B52 Plane Kit Card
+      - 2377927 # Ferrari F40 & Competizion kit card
+      - 436445 # A10 Plane Kit Card
+      - 652841 # Dummy 13 | V1 Kit Card
+      - 1032328 # F-15 Plane Kit Card
+      - 1156265 # F-14 TOMCAT Plane Kit Card
+      - 1373758 # Star Wars AT-AT Articulated Model
+      - 415603 # Forklift Kit Card with Palette
+      - 1331824 # Fisherman's KitCard - Full set Birthday card
+      - 13745 # Kit Card B1 Battle Droid Star Wars
+      - 2964241 # GT-R R34 Mini "Kit Card" - A1 Mini, No Glue
+      - 22259 # AT-ST Walker Kit Card
+      - 2170109 # C-17 Plane Kit Card
+      - 250454 # Tesla Cybertruck Kit Card_Designed by Muunk Studio
+      - 1866618 # Wheel loader kit card
+      - 223450 # Darth V. Tie Advanced X1 Kit Card
+      - 588488 # Jimny - kit card
+      - 1471294 # Formula 1 Kit Card
+      - 1283835 # R5 Turbo2 - Kit Card
+      - 218462 # Golf MK1 - Kit Card
+      - 376939 # DeLorean DMC-12 (Back to the Future) - Kit card
+      - 1702633 # X-Wing Kit Card
+      - 698950 # F117 Plane Kit Card
+      - 199176 # SR-71 Plane Kit Card
+
+  - url: https://makerworld.com/en/collections/37709324-animals
+    name: Animales
+    description: Figuras articuladas, esculturas y decoración con animales.
+    models:
+      - 2515708 # 哥斯拉喵
+      - 2551061 # Hang In There! Fridge Cat
+      - 2877164 # Flexi Horned Lizard / Articulated Desert Lizard
+      - 2818473 # The smallest squirrel in the world (Nozzle 0.4)
+      - 2425384 # Sleepy German Shepherd Monitor
+      - 2670421 # Mini Turtle
+      - 1233947 # If It Moves, It Might Be Food - Articulated Shark
+      - 1693578 # Lizard meme
+      - 1550276 # Cute Sleeping Low Poly Kitten (Support free)
+      - 2782172 # Goofy series – GOOSE Movable Eyes NOAMS
+      - 1143131 # Eagle with Wings Spread
+      - 1706146 # CaT-Rex
+      - 580534 # German Shepherd Dog
+      - 1260562 # 打哈欠的小猫 微缩动物模型工艺品摆件
+      - 2075778 # Cute Flexi Articulated Turtle
+      - 2633425 # Flexi Pig - Articulated Keychain
+      - 2835339 # Sleepy Minecraft Wolf Monitor Pet
+      - 1765579 # Articulated Hammerhead Shark
+      - 202575 # Flexi Spider
+      - 1825761 # Gary - No AMS - Spongebob toy
+      - 2783835 # Cocodrilo Articulado - 6g
+      - 1369794 # Realistic Crab
+      - 1327338 # Sweet Little Pig
+      - 2117789 # Cute Capybara in a Hoodie
+      - 2644460 # Grumpy Zen Turtle
+      - 2376777 # Chonky Cat in a Tub / Storage or Clicker!
+      - 2733972 # Katze mit hochgezogenen Augenbrauen
+      - 2837783 # Detailed Raven Miniature Figure
+      - 891565 # Pocket Pets - Pocket Puppy - Beagle
+      - 2443114 # Mini Hen / Chicken
+      - 2395597 # 卷毛小狗摆件
+      - 548277 # Minecraft Chicken prop 2 sizes + hat
+      - 2880370 # Zookis - Zuri (cebra) #28
+      - 2478005 # HIDE-A-BUNNIES
+      - 1370099 # Cute Mini Bee (Bee Box compatible)
+      - 1549806 # Knitted Horse
+      - 2108809 # Cute Bearded Dragon - Tiny Terras Series
+      - 1970662 # Lunova - Articulated Horse (Print-In-Place)
+      - 1218851 # Tiny Bunny
+      - 2416792 # Baby Shark | Flexi Print in Place
+      - 2922680 # Voronoi Wolf – Mystische Eleganz
+      - 2962764 # Border Collie dog flexi keychain
+      - 2872869 # Jumping Frog Fidget Toy
+      - 2862553 # Great White Shark Skeleton
+      - 1429303 # Flexi Guinea Pig | Articulated Pet
+      - 1276029 # Französische Bulldogge / French Bulldog
+      - 2750815 # Deer - Japandi Style
+      - 2137319 # Mini Flexi Border Collie Puppy
+      - 1611393 # Veiled Chameleon – Tongue-Tastic Treeclimber!
+      - 1686684 # Vogelspinne Tarantel – naturgetreu detailreich
+      - 873624 # Deer - doe
+      - 2285698 # Very Cute Articulated Octopus
+      - 2658631 # PAW PATROL CHASE / NO AMS
+      - 2697675 # Howling Baby Wolf
+      - 2189453 # Sausage Dog Spring Toy
+      - 1532701 # Detailreicher roboter skorpion
+      - 2756144 # Voronoi Bartagame – Detail trifft Design
+      - 2163732 # Meditating Balloon Dog
+      - 3026871 # DAFFY DUCK THE GANGSTER / NO AMS
+      - 1919409 # Gary蛇
+      - 1294114 # Sleepy fat cat
+      - 3147073 # Daffy Duck – Figurine (AMS + No AMS Versions)
+      - 2091553 # Dachshund Tray – Adorable Dog Organizer
+      - 2160244 # Ultra Low Poly Geometric Wolf Sculpture
+      - 2124551 # Urban capybara
+      - 1160376 # Little Fat Cat
+      - 1157708 # Knitted Giraffe
+      - 2215005 # Mini Shark Articulated
+      - 2571062 # Articulated Killer Whale - Flexi Orca
+      - 2863238 # Articulated Northern Pike (Esox lucius)
+      - 1090887 # Flexi Pangolin
+      - 1388735 # CAVALLO SELVAGGIO - WILD HORSE
+      - 2799836 # Not a Meowning Person (No AMS)
+      - 3084685 # 鹿鸮松小队
+      - 2373512 # Flexi Manta Ray | Print in Place – NO SUPPORT
+      - 2344340 # Spirit of the Wild - Howling Flame Wolf Sculpture
+      - 2875456 # Just a Fat Rock Pigeon
+      - 1501418 # Minimalist Modern Dachshund Figure, Sculpture
+      - 2104663 # Crab Pen Holder - Desk Buddy
+      - 2749772 # Sassy Coffee Cat – Cute Chill Decor
+      - 3186647 # 伸缩滑溜卡皮巴拉解压玩具
+      - 1210305 # Butterfly
+      - 2746303 # Skipper - No AMS
+      - 1074891 # Cute Fox
+      - 2830971 # Cute Wobbly Penguin – NO AMS
+      - 2702284 # Chameleon Sitting on a Tree Branch Flexi Toy
+      - 2609973 # Grumpy Zen Giraffe
+      - 2928379 # Sleepy Poodle - Monitor Buddy
+      - 3339689 # Bone Cat – Skeletal Feline Sculpture
+      - 2166692 # Low-Poly Animal Collection
+      - 764261 # Cute articulated frog
+      - 2648242 # Articulated Bee
+      - 566111 # BITING T-REX (MULTIPART PRINT)
+      - 1396514 # Articulated Cow
+      - 1200178 # Cute Flexi Crocodile
+      - 2432219 # Eulen Duo Black & White
+      - 2928490 # Keychain Collection All in One 25 Packs
+      - 2191995 # GATTO POLIGONALE - CAT LOW POLY
+      - 3066629 # Hei Hei – Figurine (AMS + No AMS Versions)
+      - 2939565 # Rootwoven Eule
+      - 1474126 # The Bull of Wall Street
+      - 2997714 # NO AMS -The pooping animals collection
+      - 1763763 # Figuras adorables de animales
+      - 2544759 # Balancing Cat Sculpture
+      - 2999716 # Fishing Frog Teabag Holder
+      - 2983886 # Goofy series – GOAT Movable Eyes NOAMS
+      - 2776611 # 雄狮
+      - 3151446 # Clinging Tree Frog Switch Plate
+      - 1527012 # Modern Minimalist Low Poly Elephant Statue
+      - 2255066 # Dove, Pigeon - Bird - Animal
+      - 2769090 # Ratatouille raton chef / NO AMS
+      - 2633707 # Goose Monitor Buddy
+      - 2536947 # Juste un gros Chat – Inutile mais nécessaire
+      - 3231753 # Dachshund Catchall Tray
+      - 981625 # Sheeptastic! Toilet Paper Sheep Holder - FITS ALL!
+      - 2520272 # Articulated Otter - Toy / Keychain
+      - 1188737 # Rearing Horse
+      - 2613056 # Majestic Eagle on Rock – Detail Decorative Statue
+      - 1569327 # Walking Low Poly Turtle
+      - 2477465 # Flexi beaver
+      - 3076705 # Voronoi Leopard | Elegant Voronoi Sculpture
+      - 2776672 # Goofy series – TURTLE Movable Eyes NOAMS
+      - 2451233 # Horse
+      - 2260278 # Gym Bro Capybara
+      - 1645161 # Dreaming Fox – Low Poly Charm
+      - 1206937 # Articulated Monkey
+      - 817434 # Deer - stag
+      - 2409925 # Flexi Squirrel
+      - 1965245 # Elephant
+      - 2575695 # Cute Articulated Pony Flexi - Cute Horse Figure
+      - 2317346 # Flexi articulated LION
+      - 999201 # Wally the Crocodile - articulated
+      - 3007827 # Sea animals - set
+      - 2485148 # Thicc Gorilla Twerking
+      - 2215857 # Year of the Horse 2026 - Ethereal Stallion
+      - 171079 # Articulated Sea Turtle (singlecolor & multicolor)
+      - 1938239 # Giraffe Fidget Toy – Articulated Cute Animal
+      - 1314470 # Articulated Cute Octopus
+      - 2716330 # 5g蜥蜴 lizard-关节可动蜥蜴-仅5g
+      - 1723143 # Sea Otter with Shell
+      - 1451800 # Giraffe
+      - 3245667 # Flexi Alligator Snapping Turtle & Keychain
+      - 1558356 # Estatua Elegante de Caballo
+
+  - url: https://makerworld.com/en/collections/36542272-figures
+    name: Figuras
+    description: Personajes, esculturas y figuras articuladas.
+    models:
+      - 1836728 # Minimalist Low Poly Anubis Statue
+      - 2264931 # Shenlong Dragon
+      - 2865166 # WALL-E Robot - Articulated
+      - 620832 # Higher Quality Wall-E Model
+      - 3391530 # Climbing Ledge Specials Ops Soldiers!
+      - 152175 # Rose Bear
+      - 2796068 # Goku Bust Figure Dragon Ball
+      - 2545832 # Chopper Monster Point - One Piece
+      - 2415809 # Zoro Roronoa - One Piece - "Santoryu Master"
+      - 2606058 # Luffy Gear 5 - One Piece The Warrior of Liberation
+      - 2845609 # The source - Dynamic Sculpture by Luo Li Rong
+      - 2647505 # Hyper Detailed Tyrannosaurus Rex
+      - 3216131 # 3 1/2 ft tall Alien Greeter
+      - 3334143 # Tiny Flexi Skeleton
+
+  - url: https://makerworld.com/en/collections/36227751-organizers
+    name: Organizadores
+    description: Para la cocina, el taller, la oficina y todo lo que necesite un lugar.
+    models:
+      - 3231753 # Dachshund Catchall Tray
+      - 981625 # Sheeptastic! Toilet Paper Sheep Holder - FITS ALL!
+      - 2766390 # Svuotatasche Gorilla
+      - 3149184 # Alligator Water Key Tray – XL Version
+      - 879360 # Magnet organizer (with magnet tubes)
+      - 179516 # Altoids Tin Inserts
+      - 2329319 # Magnet Storage Box|磁铁收纳盒|锁扣|清晰标签|Magnet Holder
+      - 1351554 # Sensu (Japanese Hand Fan) Stand
+      - 1225753 # Cyber Slim wallet / Card holde / Gift / Present
+      - 2377795 # Japandi Küchenrollenhalter
+      - 545105 # Underware – Ultimate Cable Management System (MB)
+      - 1889932 # Nuvia – Where plastic forgets it’s rigid.
+      - 1557600 # Monstera coaster Plant
+      - 1659764 # Coaster Gyroa – Shape within. Style beyond.
+      - 1958327 # Japanese-Style Coaster & Draining Rack Set
+      - 1614613 # Multi-Purpose Kitchen Utensil Holder
+      - 251174 # cutlery basket drainer
+      - 1873422 # Modular Dual Base Cutlery Drainer Organizer
+      - 2463171 # Premium Ribbed Cutlery Drainer - Self-Draining
+      - 3011090 # Red Solo Cup & Utensil Caddy – w/ Sharpie Slot
+      - 3128751 # Self-Draining Sink Caddy–Detergent,Sponge, Cutlery
+      - 761606 # Gridfinity Adjustable Silverware Holder
+      - 1101623 # Simple Mason Jar Candy Machine
+      - 2054586 # Self-Draining 3D Cutlery Drainer with Inclined
+      - 1995317 # Monstera Napkin Holder
+      - 3047063 # Mount Fuji Napkin Holder
+      - 1374310 # Mid-century Modern Napkin Set
+      - 1879613 # Sliding Lock | Locking Latch
+      - 1032883 # Cable Duct
+      - 1574391 # Electric Wire Wall Mount - Parametric
+      - 2237296 # Oil Funnel Holder / Draining System / Drip Tray
+      - 2539396 # Wall Mount Garden Tool Hanger
+      - 1928049 # grinding discs holder
+      - 949222 # Another Nitrile Glove Box Dispenser
+      - 2502120 # 3, 5, & 6 Inch Orbital Sanding Disc Holder
+      - 1620135 # Bohrer Halter (metrisch und imperial) Ikea Skadis
+      - 189568 # Modular Wrench Holders
+      - 1749163 # Ultimate Modular Socket Organizer
+      - 1320168 # Robust Woodworking Assembly Jigs - Various sizes
+      - 1189856 # Greenhouse Dome Hub (Modular, Scalable, Efficient)
+      - 415969 # Custom Drawer Divider Brackets
+      - 3063873 # Benchworks 2.0 - Modular bench building system
+      - 1496122 # Saw Horse Folding Bracket
+      - 1066559 # tiroirs pour bobine sunlu V2
+      - 2172346 # Infinity Spool Tower The Ultimate Storage Solution
+      - 1321676 # Vassoio portaoggetti geometrico con bordi V2
+      - 2787968 # Rolling Station ALL-IN-ONE
+      - 2155494 # Clip for Socks - Vileda Drying Rack
+      - 1028236 # Filament Rack System (Spool & Filament Holder)
+      - 463249 # Gridfinity Rugged Case "Light" R3 - 150+ SIZES
+      - 1334981 # Fishfinity Tackle Box
+      - 1267055 # Hat Hanger
+      - 3031285 # Wall Mount Hat Holder
+      - 856489 # 大型收纳篮 可堆叠的 220*187*78mm 无支撑 镂空 省料
+      - 2508983 # 可堆叠大号方形收纳筐
+      - 2268549 # USB cable organizer Box tray IPhone Samsung
+      - 3335950 # Adjustable Shelf Support (Telescoping)
+      - 1721852 # Teeny Tote Bin + Mini HDX Tote Bin + Racks
+      - 820310 # Pure - Customizable Modular Display Shelf
+      - 1033569 # Stackable shelf organizer
+      - 1871603 # Modular and re-usable plywood furniture connectors
+      - 206120 # Shelving bracket system
+      - 2630102 # Parametric Pinch 3D joint - Geometric version
+      - 935859 # 可调高度置物架 height-adjustable shelf
+      - 676113 # Strong Modular Customizable Shelf Rack
+      - 627852 # Simple Rack | einfaches Regal
+      - 390314 # Trash bag holder
+      - 520956 # Eternity Labs Stacking Storage Basket 140x200mm
+
+  - url: https://makerworld.com/en/collections/36229570-clips
+    name: Clips y pinzas
+    models:
+      - 708853 # The Ultimate 3D Printed Clip
+      - 813980 # Bag Clips (Different sizes, Print in place)
+      - 1182676 # DESIGN BAG CLIP
+      - 1101226 # Mini Bag Clip
+
+  - url: https://makerworld.com/en/collections/36227225-tools
+    name: Herramientas
+    description: Prensas, escuadras, guías y utilidades para el taller y la casa.
+    models:
+      - 1414160 # EDC Tape Card
+      - 2393010 # Emergency door wedge
+      - 1349623 # Ratchet Strap Winder V2 - With strap locks!
+      - 2130830 # Vacuum Bag Pump Station
+      - 49962 # Tac Wedge
+      - 233465 # The Ultimate Carabiner 2.0: Refined
+      - 1157143 # Triple Pulley Block (3x608) – Ascent Zero 3
+      - 819243 # Strong Printable Clamp
+      - 3156374 # 100% 3D Printed Yarn Winder
+      - 818144 # Fensterhaken für Dekorationen
+      - 1225753 # Cyber Slim wallet / Card holde / Gift / Present
+      - 1478952 # Painter's Pyramid - Stackable
+      - 2760568 # Parametric Nut Caps & Knobs System UPDATE
+      - 3138051 # RAGTIME - Utility Blade version
+      - 610555 # Speed Square
+      - 2049061 # Dual Protractor
+      - 228859 # Ultimate Square (Metric)
+      - 1059433 # Center marker
+      - 558606 # Parallel Marking Gauge Mk II
+      - 732269 # 3-Axis Wood/Metal Working Square Metric & Imperial
+      - 2752057 # 3D Printable Vacuum Former|2 Versions +STEP files
+      - 2614550 # Vacuum former
+      - 1879613 # Sliding Lock | Locking Latch
+      - 2969056 # Parametric O-Ring Generator
+      - 2955666 # VentForge — Parametric Vents, Covers & Diffusers
+      - 2556521 # Reusable Adjustable Cable Tie (Quick Release)
+      - 1139080 # Interchangeable Sanding Contour Blocks
+      - 2583964 # Corner Clamp 90°
+      - 3063873 # Benchworks 2.0 - Modular bench building system
+      - 1803949 # Cabinet Hardware Jig
+      - 704522 # Fully 3D-Printed Kant-Twist Style Clamp
+      - 1382348 # Fidget Quick-Grip Trigger Clamp good for gluing
+      - 2084615 # Mitre Protractor
+      - 825644 # Stealth Press 1S — heat set insert press
+      - 1496122 # Saw Horse Folding Bracket
+      - 176297 # Corner Clamp for Woodworking
+      - 860190 # 小台钳（无须五金件）
+      - 29470 # Clamp anything! Fractal vise
+      - 3148048 # BUDGET DIY Router Sled - UNDER 200€
+      - 1155818 # Whopper Plopper fishing lure (one piece)
+      - 1402284 # Complete fishing set with Reel & Rod - Fish8r
+      - 2577626 # My Other Hand
+      - 2310347 # Utilty Knife MK2
+      - 2365853 # SIG SAUER K320 Inspired Folding Utility Knife
+      - 1791243 # Mini Crossbow
+      - 2292319 # Heavy-Duty Wall Hook / Utility Bracket Compact
+      - 951657 # Quick Access Caliper Stand - QACS
+      - 68606 # Metric Allen Wrench Holder
+      - 1903873 # Allen key handles - Print in Place ( Metric )
+      - 1331824 # Fisherman's KitCard - Full set Birthday card
+      - 922296 # caliper battery saver
+      - 2901625 # FLYCATRAZ - Die ausbruchsichere Fruchtfliegenfalle
+      - 1013142 # Hotend nozzle cleaning brush for Bambulab printers
+      - 413220 # Bed Scraper XL
+      - 3335950 # Adjustable Shelf Support (Telescoping)
+      - 386963 # Build Plate Cleaner
+      - 3338931 # T-joint Clamp with Screw Jig
+      - 194672 # Whetstone Knife Sharpening Aid
+      - 558636 # Knife sharpening guide
+      - 1175423 # Overengineered Knife Sharpening Jig
+      - 2221796 # Knife Sharpening Jig for Whetstones (Gridfinity)
+      - 1802354 # NEW Sanding Block With Tensioner, HRCv3 available!
+
+  - url: https://makerworld.com/en/collections/36578716-moving-and-buildable-projects
+    name: Proyectos mecánicos y armables
+    description: Motores, mecanismos y maquetas con piezas que se mueven de verdad.
+    models:
+      - 2741715 # The remontoir gravity escapement mechanism
+      - 1791243 # Mini Crossbow
+      - 474557 # Survival X-Bow
+      - 712809 # SpaceX Raptor 3 Vacuum Rocket Engine 1/10th scale
+      - 77780 # ToroSpin Turbo - Launcher with planetary gearbox
+      - 803543 # ToroSpin - Mono Print-In-Place
+      - 701074 # Wankel engine - motorized
+      - 495215 # Flaming Fox V8
+      - 13806 # 3D Printable Jet Engine
+      - 1581749 # Vega 30
+      - 2147913 # Supermarine Spitfire Mk VIII
+      - 477475 # 3d Printable Turbojet Engine
+      - 1720857 # Handbetriebene Luftschutzsirene
+      - 690541 # Wankel engine - Manual drive
+      - 1201435 # 4 Speed Manual Transmission - Upgraded
+      - 2037114 # Helical LSD (Helical Limited Slip Differential)
+      - 14267 # Engine Model 005
+
+  - url: https://makerworld.com/en/collections/37707423-aircrafts
+    name: Aviones y aeronaves
+    description: Aviones, helicópteros y drones a escala.
+    models:
+      - 223450 # Darth V. Tie Advanced X1 Kit Card
+      - 606490 # AH-64 E Apache Guardian Attack Helicopter
+      - 2925669 # Centurion C-RAM Articulated Scale Display Model
+      - 1928737 # A400M Atlas Plane Kit Card
+      - 1060922 # MIG-29 FULCRUM plane kit card
+      - 545395 # MQ-9 Reaper UAV
+      - 2492532 # 500mm Glider - Glue-Free, Clicks Together in 2 min
+      - 2768385 # F-22 Raptor Plane Kit Card
+      - 1493317 # P-51D Desk Fan
+      - 1653693 # B-29 Plane Kit Card
+      - 1439243 # V-22 Tiltrotor Kit Card
+      - 1180634 # AH-64 Helicopter Kit
+      - 967133 # F16 Plane Kit Card
+      - 242106 # B52 Plane Kit Card
+      - 436445 # A10 Plane Kit Card
+      - 1032328 # F-15 Plane Kit Card
+      - 1156265 # F-14 TOMCAT Plane Kit Card
+      - 2170109 # C-17 Plane Kit Card
+      - 698950 # F117 Plane Kit Card
+      - 1702633 # X-Wing Kit Card
+      - 199176 # SR-71 Plane Kit Card
+
+  - url: https://makerworld.com/en/collections/37707536-tanks
+    name: Tanques y vehículos militares
+    description: Maquetas de tanques y blindados a escala.
+    models:
+      - 1163208 # Mecha Tank I
+      - 1677327 # CyberBrick Wiesel Mk20 & 1A4 Waffenträger
+      - 1408587 # M1A2 Abrams SEPv3 Main Battle Tank
+      - 711175 # M109A7 Paladin Self-Propelled Howitzer
+      - 2417576 # M3A3 Bradley Infantry Fighting Vehicle BUSK III
+      - 2789649 # Panzer IV Tank Ausf.H with side skirts 1/35 Scale
+      - 1533631 # Jagdpanzer E100 Super Heavy Tank Destroyer 1:35
+      - 2167962 # Leopard 2 AV Prototype Main Battle Tank 1/35 Scale
+      - 2032446 # SA-6 Air Defence Missile Launcher Vehicle 1/35
+      - 1810728 # Tiger II Heavy Tank 1/35 Scale Tiger 2 King Tiger
+      - 2280071 # Leopard 2 A7 Main Battle Tank Movable Cannon 1/35
+      - 1582797 # t34/85 medium tank T-34-85 1:35 scale Soviet Union
+      - 1678913 # Tiger 1 Kit Card
+      - 1640522 # M1A1 Abrams 1:35 Scale USA
+      - 1607303 # M4A3E8 Sherman FURY Medium Tank USA 1:35 Scale
+      - 1512740 # Tiger I Heavy Tank 1:35 Easy to Print and Assemble
+      - 679345 # T-34-85 Tank Kit Card - High Detail 1:64 Scale
+      - 1928908 # Abrams X US 4th-Gen Main Battle Tank 1/35 Scale
+
+  - url: https://makerworld.com/en/collections/37707847-heavy-trucks
+    name: Maquinaria pesada
+    description: Cargadores, excavadoras, grúas y camiones de trabajo.
+    models:
+      - 1866618 # Wheel loader kit card
+      - 415603 # Forklift Kit Card with Palette
+      - 734215 # Fixum Dude Motors PiP Flatbed Tow Truck
+      - 146718 # Compact Excavator 300 %
+      - 2539196 # 1/64 Keny T270 Tow Truck
+      - 2467631 # CyberBrick GORAL 815 8x8 6x6 4x4 RC OffRoad Truck
+      - 114353 # Mining truck 300 %
+      - 2327896 # JCB 3CX Backhoe Loader ( Excavator ) 1:24 scale
+
+  - url: https://makerworld.com/en/collections/37707316-cars
+    name: Autos
+    description: Autos clásicos, de película y deportivos a escala.
+    models:
+      - 1530441 # Tumbler Batmobile - Wcad Edition
+      - 763297 # Rover Kit Card - Perseverance
+      - 657063 # Humvee military truck- fully 3d printed model
+      - 1279412 # Ford Super Duty
+      - 1770755 # Flatbed for pickup
+      - 734215 # Fixum Dude Motors PiP Flatbed Tow Truck
+      - 2467631 # CyberBrick GORAL 815 8x8 6x6 4x4 RC OffRoad Truck
+      - 602671 # Back To the Future - DeLorean - Complete Edition
+      - 2137918 # GENERAL LEE 1969 / No AMS
+      - 1243172 # Ecto 1 Model Car
+      - 685104 # Mini Cooper Kit Card
+      - 605480 # 1965 Fiat 500 Model Easy Print Detailed Features
+      - 443896 # JEEP WRANGLER with LED lights - SCALE 1:12
+      - 1141341 # VW Beetle / Bug 1300
+      - 2527287 # Pick-Up J79 Single Cab - Kit Card
+      - 1209795 # Army Truck Kit Card
+      - 223303 # Jeep Kit Card
+      - 2377927 # Ferrari F40 & Competizion kit card
+      - 2964241 # GT-R R34 Mini "Kit Card" - A1 Mini, No Glue
+      - 250454 # Tesla Cybertruck Kit Card_Designed by Muunk Studio
+      - 588488 # Jimny - kit card
+      - 1471294 # Formula 1 Kit Card
+      - 1283835 # R5 Turbo2 - Kit Card
+      - 218462 # Golf MK1 - Kit Card
+      - 376939 # DeLorean DMC-12 (Back to the Future) - Kit card
+      - 1290336 # Porsche 911 992.2 GT3 - 1:10 Scale Model / RC Car
+
+  - url: https://makerworld.com/en/collections/37292418-xmas
+    name: Navidad
+    description: Decoración navideña, nacimientos y adornos para la temporada.
+    models:
+      - 1969275 # Grinch Hand
+      - 74938 # Nativity Scene All figures
+      - 2102326 # Santa Gnome - Multi Part
+      - 3252806 # Nussknacker – Teelichthalter
+      - 3229654 # Weihnachtsdorf mit LED-Beleuchtung
+      - 2021551 # Gnomo natalizio - No AMS - Christmas decoration
+      - 852404 # Gingerbread Christmas House Door Corner
+      - 799215 # Small Basic Trees
+      - 1963222 # Snowman Bowl
+      - 779430 # Christmas tree with ornament, hands, flexible legs
+      - 2116884 # Christmas Bauble Photo Frame with Bow - Snap-Fit
+      - 1955451 # Christmas nativity scene
+      - 805567 # Lebkuchenhaus geeignet zum Beleuchten
+      - 1976076 # Personalised gingerbread Xmas gift tag - Set 2
+      - 2000836 # Sneaky Grinch
+      - 845323 # Snowman Booty Christmas Ornament
+      - 2043188 # Gnomi nordici - No AMS - Home Decoration
+      - 1995197 # Pinecone Cottage - Miniature Gnome House
+      - 2128558 # Wreath-Shaped Photo Frame Ornament Snap-Fit
+      - 2037901 # Funny Christmas tree
+      - 818144 # Fensterhaken für Dekorationen
+      - 1788863 # Gnome Decoration (container)
+      - 1916342 # Stitch Christmas Edition / NO AMS
+      - 800845 # Articulated Christmas Snowman
+      - 843935 # Complete Nativity Scene
+      - 2041630 # NO AMS Grumpy Christmas Highland Cow
+      - 808099 # Little Christmas Deer
+      - 2070437 # Winter Majesty Reindeer
+      - 802819 # The Grinch with Ornament - Christmas Shadow Caster
+      - 2027694 # Grumpy Grinch
+      - 2089914 # Wine bottle holder
+      - 3347382 # Winter Rentier
+      - 1923765 # Christmas Decor Scene with LED tealight holder
+      - 799707 # Christmas Trees
+      - 2114514 # Magical Christmas Gift Factory Globe，No AMS
+      - 1895187 # Teelichthäuschen
+      - 2045032 # Mini Gingerbread House Kit Card
+      - 1993646 # Gingerbread christmas train
+      - 744793 # Christmas Ho Ho Ho
+      - 715806 # Gift Wrap Paper Holder V1.5 Update!
+      - 2094499 # 皮卡丘圣诞树服装（全拆件，无需AMS）
+      - 1680643 # Star Wars AT-AT Christmas Ornament
+      - 2097031 # Christmas KITcard House – Print-in-One
+      - 3176140 # Christmas Tree Minimalistic Japandi Decor
+      - 2003920 # Christmas Reindeer
+      - 2123343 # for Tealight Candles - Cozy Pinecone Cottage
+      - 2105894 # Christmas Rotating Multi-Tier Cookie Display Stand
+      - 2386785 # Cozy Woodland Cottage – LED Tealight House
+      - 2000812 # Portarrollos Navideños con Elfos
+      - 869702 # Merry Christmas Santa Door Corner
+
+  - url: https://makerworld.com/en/collections/36541869-thermoformed
+    name: Termoformados
+    models:
+      - 2133814 # Thermoformed Christmas tree bauble
+      - 3257455 # Thermoformed happy ghosts
+
+  - url: https://makerworld.com/en/collections/36644834-musical-instruments
+    name: Instrumentos musicales
+    description: Silbatos, flautas y percusiones que suenan de verdad.
+    models:
+      - 745569 # Steam Engine Whistle - Functional with sound
+      - 2810506 # Bass Tube (Melody version)
+      - 1031909 # Steam Train Whistle - Like a real Steam Train
+      - 1128443 # Tube Drum - Tubulum (5 Tubes)
+      - 562104 # Infinity Whistle! 12 Tone. Extremely Loud Benchy
+      - 471686 # TeleTunes Octo Tune Major Flute / Whistle (F#)
+      - 13026 # Whistle Pan flute
+
+  - url: https://makerworld.com/en/collections/37278514-toys
+    name: Juguetes
+    models:
+      - 613408 # Full 3D printed Bow
+      - 1169267 # Modular Blowgun (Extremely Powerful!)
+
+  - url: https://makerworld.com/en/collections/37214149-chess
+    name: Ajedrez
+    models:
+      - 1805690 # Gothic Ornamental Chess Set
+
+  - url: https://makerworld.com/en/collections/36803668-key-holders
+    name: Portallaves de pared
+    description: Ganchos para llaves, muchos con siluetas de autos clásicos.
+    models:
+      - 1081242 # Elephant (Wall Hook)
+      - 419998 # KeyCarry - EDC Key Organizer (M3 screw compatible)
+      - 2911312 # 911 turbo (930) key hanger
+      - 3210052 # Porta-Chaves de Parede Opala SS
+      - 3019126 # Porte-clés Dodge Challenger
+      - 2839551 # GT3 rs key hanger V2
+      - 2993620 # Porte-clés Bmw M3 G80
+      - 2577448 # Ford Mustang Schlüsselhalter Front Remix
+      - 2061769 # Batmobile key hanger
+      - 2336087 # Beetle key hanger
+      - 2527810 # Mustang gt key hanger
+      - 1556469 # Delorean key hanger
+      - 1840430 # Supra Mk4 key hanger
+      - 1599531 # R35 GTR Key hanger
+      - 1515579 # e30 M3 Key Hanger
+      - 1271284 # F40 Key Hanger
+      - 2608443 # GT3 rs key hanger
+
+  - url: https://makerworld.com/en/collections/37213615-keychain
+    name: Llaveros
+    models:
+      - 43967 # Akatsuki Keychain - Naruto
+
+  - url: https://makerworld.com/en/collections/36227615-containers
+    name: Contenedores
+    models:
+      - 2361460 # Threaded Lid Generator
+      - 1317369 # Drying rack, raised, for resin prints or anything
+      - 3009588 # 大号网面收纳盒（优化加强简单版）
+      - 1651926 # Plant/Herb Drying Rack (Box)
+      - 2612089 # 大号网面收纳盒
+      - 1232711 # Outdoor Container - Robust and Waterproof
+      - 716614 # Container Family
+      - 1209712 # Functional bag clip screw
+
+  - url: https://makerworld.com/en/collections/36227429-gridfinity
+    name: Gridfinity
+    description: Piezas compatibles con el sistema modular de organización Gridfinity.
+    models:
+      - 856330 # Gridfinity Ruler MKII [7 Unit Length]
+
+# -----------------------------------------------------------------------------
+# home — the home page.
+#
+#   cube   Six model IDs (or MakerWorld model URLs) shown on the spinning cube,
+#          one per face, in this order. Each must be in one of the collections
+#          above. Missing or unknown IDs are skipped, and empty faces fall back
+#          to the first model of each collection.
+# -----------------------------------------------------------------------------
+home:
+  cube:
+    - 2741715 # front - The remontoir gravity escapement mechanism
+    - 2865166 # right - WALL-E Robot - Articulated
+    - 1530441 # back - Tumbler Batmobile - Wcad Edition
+    - 2647505 # left - Hyper Detailed Tyrannosaurus Rex
+    - 1805690 # top - Gothic Ornamental Chess Set
+    - 1791243 # bottom (rarely seen) - Mini Crossbow
+
+# -----------------------------------------------------------------------------
+# overrides — optional per-model tweaks, keyed by MakerWorld model ID
+# (the number in https://makerworld.com/en/models/<ID>-...).
+#
+#   name         Replaces the MakerWorld title on the page.
+#   description  Replaces the MakerWorld description (write it in Spanish).
+#   hidden       true → the model is not shown anywhere on the page.
+#
+# Titles/descriptions are never auto-translated; use these to localize.
+# -----------------------------------------------------------------------------
+overrides:
+  2741715:
+    name: Mecanismo de escape por gravedad (remontoir)
+  1791243:
+    name: Mini ballesta
+  # 1234567:
+  #   name: Nombre en español
+  #   description: Descripción en español.
+  #   hidden: true

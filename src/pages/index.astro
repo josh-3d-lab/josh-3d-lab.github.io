@@ -1,0 +1,583 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Logo from '../components/Logo.astro';
+import { collections, cubeModels, loadContact, ogImage, whatsappLink } from '../lib/catalog';
+
+const contact = loadContact();
+const modelCount = new Set(collections.flatMap((c) => c.models.map((m) => m.id))).size;
+
+// Cube faces: `home.cube` in catalog/config.yml (see CATALOG.md).
+const faces = cubeModels();
+
+// Featured collections: the six biggest, each shown as a stack of its first three covers.
+const featured = [...collections].sort((a, b) => b.models.length - a.models.length).slice(0, 6);
+
+const steps = [
+  {
+    title: 'Elige un modelo',
+    text: 'Explora el catálogo y abre el que te guste para ver todas sus fotos.',
+  },
+  {
+    title: 'Escríbeme',
+    text: 'Toca «Solicitar este modelo» y me llega tu mensaje por WhatsApp o correo.',
+  },
+  {
+    title: 'Lo imprimo para ti',
+    text: 'Te confirmo tamaño, colores y tiempo de entrega, y lo imprimo bajo pedido.',
+  },
+];
+---
+
+<BaseLayout
+  title="Josh 3D Lab"
+  description={`Piezas impresas en 3D bajo pedido: figuras, organizadores, herramientas, maquetas y más. Explora ${modelCount} modelos y pide el tuyo por WhatsApp.`}
+  ogImage={ogImage?.src}
+>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <img
+        class="hero-logo"
+        src="/josh-3d-lab-logo-320.webp"
+        srcset="/josh-3d-lab-logo-320.webp 320w, /josh-3d-lab-logo-640.webp 640w"
+        sizes="(min-width: 52rem) 11rem, 9rem"
+        width="320"
+        height="320"
+        alt="Josh 3D Lab"
+        fetchpriority="high"
+      />
+      <p class="eyebrow">Impresión 3D bajo pedido</p>
+      <h1 id="hero-title">Ideas que <span class="accent">puedes tocar.</span></h1>
+      <p class="lead">
+        Figuras, organizadores, herramientas y maquetas impresas en 3D, una por una, cuando tú las pides.
+        Elige un modelo del catálogo y yo me encargo del resto.
+      </p>
+      <div class="actions">
+        <a class="btn btn-primary" href="/catalogo/">Ver catálogo</a>
+        <a
+          class="btn btn-secondary"
+          href={whatsappLink(contact.whatsapp, contact.whatsappGeneralMessage)}
+          target="_blank"
+          rel="noopener noreferrer">Escríbeme por WhatsApp</a
+        >
+      </div>
+      <dl class="stats">
+        <div><dt>Modelos</dt><dd>{modelCount}</dd></div>
+        <div><dt>Colecciones</dt><dd>{collections.length}</dd></div>
+        <div><dt>Fabricación</dt><dd>Bajo pedido</dd></div>
+      </dl>
+    </div>
+
+    <div class="scene" aria-hidden="true">
+      <div class="bed"></div>
+      <div class="cube-tilt">
+        <div class="cube">
+          {
+            faces.map((m, i) => (
+              <div class={`face face-${i + 1}`}>
+                <img
+                  src={m.thumb.src}
+                  width={m.thumb.width}
+                  height={m.thumb.height}
+                  alt=""
+                  decoding="async"
+                />
+              </div>
+            ))
+          }
+        </div>
+      </div>
+      <div class="cube-shadow"></div>
+    </div>
+  </section>
+
+  <section class="steps" aria-labelledby="steps-title">
+    <h2 id="steps-title">Cómo funciona</h2>
+    <ol>
+      {
+        steps.map((s, i) => (
+          <li class="step">
+            <span class="step-number" aria-hidden="true">
+              {i + 1}
+            </span>
+            <h3>{s.title}</h3>
+            <p>{s.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <section class="featured" aria-labelledby="featured-title">
+    <div class="section-head">
+      <h2 id="featured-title">Colecciones</h2>
+      <a href="/catalogo/">Ver todo el catálogo →</a>
+    </div>
+    <ul class="collection-grid">
+      {
+        featured.map((c) => (
+          <li>
+            <a class="collection-card" href={`/catalogo/#${c.slug}`}>
+              <span class="stack">
+                {c.models
+                  .slice(0, 3)
+                  .reverse()
+                  .map((m) => (
+                    <img
+                      src={m.thumb.src}
+                      width={m.thumb.width}
+                      height={m.thumb.height}
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ))}
+              </span>
+              <span class="collection-name">{c.name}</span>
+              <span class="collection-count">{c.models.length} modelos</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="cta" aria-labelledby="cta-title">
+    <Logo size={40} />
+    <h2 id="cta-title">¿Tienes algo en mente?</h2>
+    <p>Si no encuentras lo que buscas en el catálogo, escríbeme y vemos cómo imprimirlo.</p>
+    <a
+      class="btn btn-primary"
+      href={whatsappLink(contact.whatsapp, contact.whatsappGeneralMessage)}
+      target="_blank"
+      rel="noopener noreferrer">Escríbeme por WhatsApp</a
+    >
+  </section>
+</BaseLayout>
+
+<style>
+  /* --- Hero --- */
+  .hero {
+    /* The tilted print bed may poke past the edge on narrow screens. */
+    overflow-x: clip;
+    overflow-clip-margin: var(--space-5);
+    display: grid;
+    align-items: center;
+    gap: var(--space-7);
+    padding-block: var(--space-7) var(--space-8);
+  }
+
+  @media (min-width: 52rem) {
+    .hero {
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      padding-block: var(--space-8) var(--space-9);
+    }
+  }
+
+  .hero-logo {
+    width: 9rem;
+    height: auto;
+    margin-block-end: var(--space-5);
+    border-radius: 50%;
+    box-shadow: var(--shadow-lg);
+  }
+
+  @media (min-width: 52rem) {
+    .hero-logo {
+      width: 11rem;
+    }
+  }
+
+  h1 {
+    font-size: var(--text-4xl);
+    margin-block: var(--space-3) var(--space-4);
+    letter-spacing: -0.03em;
+  }
+
+  .accent {
+    color: var(--accent);
+  }
+
+  .lead {
+    max-width: 34rem;
+    font-size: var(--text-lg);
+    color: var(--text-muted);
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-block-start: var(--space-6);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-3) var(--space-5);
+    font-weight: 600;
+    border-radius: var(--radius);
+    transition:
+      background-color var(--transition),
+      box-shadow var(--transition),
+      transform var(--transition);
+  }
+
+  .btn:hover {
+    text-decoration: none;
+    transform: translateY(-1px);
+  }
+
+  .btn-primary {
+    color: var(--bg);
+    background-color: var(--accent);
+    box-shadow:
+      0 4px 0 var(--accent-700),
+      var(--shadow-sm);
+  }
+
+  .btn-primary:hover {
+    color: var(--bg);
+    background-color: var(--accent-hover);
+  }
+
+  .btn-primary:active {
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 var(--accent-700);
+  }
+
+  .btn-secondary {
+    color: var(--text);
+    background-color: var(--bg);
+    border: 1px solid var(--border);
+    box-shadow:
+      0 4px 0 var(--border),
+      var(--shadow-sm);
+  }
+
+  .btn-secondary:hover {
+    color: var(--accent);
+  }
+
+  .stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+    margin-block-start: var(--space-7);
+  }
+
+  .stats dt {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+  }
+
+  .stats dd {
+    margin: 0;
+    font-size: var(--text-2xl);
+    font-weight: 650;
+    letter-spacing: -0.02em;
+  }
+
+  /* --- 3D scene: a photo cube floating over a print bed --- */
+  /* On narrow screens the scene leads, so the 3D piece is above the fold. */
+  @media (max-width: 51.99rem) {
+    .scene {
+      order: -1;
+    }
+  }
+
+  .scene {
+    --size: clamp(8rem, 20vw, 12rem);
+    position: relative;
+    display: grid;
+    place-items: center;
+    /* Room for the tilted bed, which projects below the cube. */
+    min-height: calc(var(--size) * 2.5);
+    padding-block-end: calc(var(--size) * 0.4);
+    perspective: 900px;
+  }
+
+  /* Bed, cube and shadow share one grid cell so they stay centered together. */
+  .scene > * {
+    grid-area: 1 / 1;
+  }
+
+  .bed {
+    width: calc(var(--size) * 1.9);
+    aspect-ratio: 1;
+    border-radius: var(--radius-lg);
+    background:
+      linear-gradient(var(--border) 1px, transparent 1px) 0 0 / 10% 10%,
+      linear-gradient(90deg, var(--border) 1px, transparent 1px) 0 0 / 10% 10%,
+      linear-gradient(135deg, var(--bg-raised), var(--bg));
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(42%) rotateX(66deg) rotateZ(45deg);
+  }
+
+  .cube-tilt {
+    transform-style: preserve-3d;
+    transform: translateY(-20%) rotateX(-22deg);
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .cube {
+    position: relative;
+    width: var(--size);
+    height: var(--size);
+    transform-style: preserve-3d;
+    transform: rotateY(-35deg);
+    animation: spin 24s linear infinite;
+  }
+
+  .face {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    border: 3px solid var(--bg);
+    border-radius: var(--radius-lg);
+    background-color: var(--bg-raised);
+    box-shadow: inset 0 0 0 1px var(--border);
+    backface-visibility: hidden;
+  }
+
+  .face img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .face-1 {
+    transform: rotateY(0deg) translateZ(calc(var(--size) / 2));
+  }
+  .face-2 {
+    transform: rotateY(90deg) translateZ(calc(var(--size) / 2));
+  }
+  .face-3 {
+    transform: rotateY(180deg) translateZ(calc(var(--size) / 2));
+  }
+  .face-4 {
+    transform: rotateY(-90deg) translateZ(calc(var(--size) / 2));
+  }
+  .face-5 {
+    transform: rotateX(90deg) translateZ(calc(var(--size) / 2));
+  }
+  .face-6 {
+    transform: rotateX(-90deg) translateZ(calc(var(--size) / 2));
+  }
+
+  .cube-shadow {
+    width: calc(var(--size) * 1.2);
+    height: calc(var(--size) * 0.3);
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(60, 40, 110, 0.3), transparent);
+    transform: translateY(calc(var(--size) * 0.95));
+    animation: shadow 6s ease-in-out infinite;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotateY(-35deg);
+    }
+    to {
+      transform: rotateY(325deg);
+    }
+  }
+
+  @keyframes float {
+    50% {
+      translate: 0 -10px;
+    }
+  }
+
+  @keyframes shadow {
+    50% {
+      scale: 0.85;
+      opacity: 0.7;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cube,
+    .cube-tilt,
+    .cube-shadow {
+      animation: none;
+    }
+  }
+
+  /* --- Sections --- */
+  section + section {
+    margin-block-start: var(--space-8);
+  }
+
+  h2 {
+    font-size: var(--text-2xl);
+  }
+
+  .steps ol {
+    display: grid;
+    gap: var(--space-5);
+    list-style: none;
+    padding: 0;
+    margin-block-start: var(--space-5);
+    counter-reset: step;
+  }
+
+  @media (min-width: 48rem) {
+    .steps ol {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .step {
+    position: relative;
+    padding: var(--space-5);
+    background-color: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow:
+      0 6px 0 var(--bg-raised),
+      0 6px 0 1px var(--border),
+      var(--shadow-sm);
+  }
+
+  .step-number {
+    display: inline-grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    color: var(--bg);
+    background-color: var(--accent);
+    border-radius: var(--radius);
+    box-shadow: 0 3px 0 var(--accent-700);
+  }
+
+  .step h3 {
+    margin-block: var(--space-4) var(--space-2);
+    font-size: var(--text-lg);
+  }
+
+  .step p {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+  }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  .section-head a {
+    font-size: var(--text-sm);
+  }
+
+  .collection-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-6) var(--space-4);
+    list-style: none;
+    padding: 0;
+    margin-block-start: var(--space-6);
+  }
+
+  @media (min-width: 48rem) {
+    .collection-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .collection-card {
+    display: block;
+    color: var(--text);
+    border-radius: var(--radius-lg);
+  }
+
+  .collection-card:hover {
+    text-decoration: none;
+    color: var(--accent);
+  }
+
+  .collection-card:focus-visible {
+    outline-offset: 6px;
+  }
+
+  /* Three covers stacked like prints on a shelf; they fan out on hover. */
+  .stack {
+    position: relative;
+    display: block;
+    aspect-ratio: 1;
+    margin: var(--space-3) var(--space-3) var(--space-4) 0;
+  }
+
+  .stack img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: var(--bg-raised);
+    border: 3px solid var(--bg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: transform 250ms ease;
+  }
+
+  .stack img:nth-last-child(3) {
+    transform: translate(12px, -12px) rotate(4deg);
+  }
+  .stack img:nth-last-child(2) {
+    transform: translate(6px, -6px) rotate(2deg);
+  }
+  .stack img:last-child {
+    box-shadow: var(--shadow-lg);
+  }
+
+  .collection-card:hover .stack img:nth-last-child(3) {
+    transform: translate(20px, -16px) rotate(8deg);
+  }
+  .collection-card:hover .stack img:nth-last-child(2) {
+    transform: translate(10px, -9px) rotate(4deg);
+  }
+  .collection-card:hover .stack img:last-child {
+    transform: translateY(-4px);
+  }
+
+  .collection-name {
+    display: block;
+    font-weight: 600;
+  }
+
+  .collection-count {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+  }
+
+  .cta {
+    display: grid;
+    justify-items: center;
+    gap: var(--space-3);
+    margin-block-end: var(--space-7);
+    padding: var(--space-7) var(--space-5);
+    text-align: center;
+    background: radial-gradient(circle at 50% 0%, var(--accent-subtle), transparent 70%), var(--bg-raised);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+  }
+
+  .cta p {
+    max-width: 30rem;
+    color: var(--text-muted);
+  }
+
+  .cta .btn {
+    margin-block-start: var(--space-3);
+  }
+</style>
