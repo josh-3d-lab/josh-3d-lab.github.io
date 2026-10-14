@@ -772,11 +772,11 @@ collections:
 # -----------------------------------------------------------------------------
 home:
   cube:
-    - 2741715 # front - The remontoir gravity escapement mechanism
-    - 2865166 # right - WALL-E Robot - Articulated
+    - 1557600 # front - Monstera coaster Plant
+    - 701074 # right - Wankel engine - motorized
     - 1530441 # back - Tumbler Batmobile - Wcad Edition
-    - 2647505 # left - Hyper Detailed Tyrannosaurus Rex
-    - 1805690 # top - Gothic Ornamental Chess Set
+    - 602671 # left - Back To the Future - DeLorean - Complete Edition
+    - 1407288 # top - Flexi Dino Skeleton in Urban Vibes Kleidung Rex
     - 1791243 # bottom (rarely seen) - Mini Crossbow
 
 # -----------------------------------------------------------------------------
