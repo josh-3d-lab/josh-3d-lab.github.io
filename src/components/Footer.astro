@@ -1,0 +1,52 @@
+---
+import { loadContact, whatsappLink } from '../lib/catalog';
+
+const contact = loadContact();
+const year = new Date().getFullYear();
+---
+
+<footer class="site-container">
+  <div class="footer-inner">
+    <p>&copy; {year} Josh 3D Lab · Impresión 3D bajo pedido</p>
+    <ul>
+      <li>
+        <a
+          href={whatsappLink(contact.whatsapp, contact.whatsappGeneralMessage)}
+          target="_blank"
+          rel="noopener noreferrer">WhatsApp</a
+        >
+      </li>
+      <li><a href={`mailto:${contact.email}`}>{contact.email}</a></li>
+    </ul>
+  </div>
+</footer>
+
+<style>
+  footer {
+    margin-block-start: auto;
+    padding-block: var(--space-6);
+  }
+
+  .footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    border-top: 1px solid var(--border);
+    padding-block-start: var(--space-5);
+  }
+
+  p,
+  ul {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+  }
+
+  ul {
+    display: flex;
+    gap: var(--space-4);
+    list-style: none;
+    padding: 0;
+  }
+</style>
